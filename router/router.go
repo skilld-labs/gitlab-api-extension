@@ -151,7 +151,7 @@ func proxyGitlab(w http.ResponseWriter, r *http.Request) {
 		r.Header.Set("X-Forwarded-Proto", "https")
 	}
 	rp := httputil.NewSingleHostReverseProxy(u)
-	rp.Transport = &http.Transport{Dial: unixSocketDial}
+	rp.Transport = ust
 
 	(&wsproxy.ReverseProxy{rp}).ServeHTTP(w, r)
 }
